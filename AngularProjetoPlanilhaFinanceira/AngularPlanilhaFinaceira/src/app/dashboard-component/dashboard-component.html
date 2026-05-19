@@ -1,0 +1,87 @@
+<div class="container mt-4">
+  <!-- Header -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-light d-flex align-items-center gap-2">
+      <button class="btn btn-outline-secondary btn-sm" (click)="voltarParaHome()">
+        <i class="bi bi-arrow-left"></i>
+      </button>
+      <h5 class="mb-0">
+        <i class="bi bi-bar-chart me-2"></i>
+        Dashboard Financeiro
+      </h5>
+    </div>
+
+    <!-- Filtros -->
+    <div class="card-body">
+      <div class="row g-3 align-items-end">
+        <!-- Ano -->
+        <div class="col-md-4">
+          <label class="form-label">
+            <i class="bi bi-calendar me-1"></i>
+            Ano
+          </label>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Ex: 2025"
+            [(ngModel)]="filtroAno"
+          />
+        </div>
+
+        <!-- Mês -->
+        <div class="col-md-4">
+          <label class="form-label">
+            <i class="bi bi-calendar-month me-1"></i>
+            Mês
+          </label>
+          <select class="form-select" [(ngModel)]="filtroMes">
+            <option [ngValue]="null">Selecione</option>
+            <option *ngFor="let m of meses" [ngValue]="m.value">
+              {{ m.label }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Botões -->
+        <div class="col-md-4 d-flex gap-2">
+          
+          <button class="btn btn-primary w-100" (click)="aplicarFiltros()">
+            <i class="bi bi-search me-1"></i>
+            Gerar
+          </button>
+
+          <button class="btn btn-outline-secondary w-100" (click)="limparFiltros()">
+            Limpar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="row g-4" *ngIf="resumo">
+    <!-- Resumo -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-light">
+          <strong>Resumo Financeiro</strong>
+        </div>
+        <div class="card-body">
+          <canvas id="graficoResumo"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categorias -->
+    <div class="col-md-6" *ngIf="categorias.length">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-light">
+          <strong>Despesas por Categoria</strong>
+        </div>
+        <div class="card-body">
+          <canvas id="graficoCategorias"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

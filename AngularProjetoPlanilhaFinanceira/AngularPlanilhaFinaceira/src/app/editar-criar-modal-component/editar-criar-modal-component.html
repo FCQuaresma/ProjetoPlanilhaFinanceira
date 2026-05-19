@@ -1,0 +1,123 @@
+<div class="card shadow-sm" [formGroup]="form">
+  <!-- Header -->
+  <div class="card-header bg-light d-flex align-items-center gap-2">
+    <i class="bi bi-cash-stack fs-5"></i>
+    <h5 class="mb-0">
+      {{ data.financa ? 'Editar Movimentação' : 'Nova Movimentação' }}
+    </h5>
+  </div>
+
+  <!-- Body -->
+  <div class="card-body">
+    <div class="row g-3">
+      <!-- Tipo -->
+      <div class="col-md-6">
+        <label class="form-label">
+          <i class="bi bi-arrow-left-right me-1"></i>
+          Tipo
+        </label>
+
+        <select class="form-select" formControlName="type">
+          <option value="R">Receita</option>
+          <option value="D">Despesa</option>
+        </select>
+
+        @if(campoInvalido(`type`)){
+          <div class="text-danger small">
+            Tipo é obrigatório
+          </div>
+        }
+      </div>
+
+      <!-- Valor -->
+      <div class="col-md-6">
+        <label class="form-label">
+          <i class="bi bi-currency-dollar me-1"></i>
+          Valor
+        </label>
+
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Informe o valor"
+          formControlName="amount"
+        />
+
+        @if(campoInvalido(`amount`)){
+          <div class="text-danger small">
+            Informe um valor maior que zero
+          </div>
+        }
+      </div>
+
+      <!-- Data -->
+      <div class="col-md-6">
+        <label class="form-label">
+          <i class="bi bi-calendar-event me-1"></i>
+          Data
+        </label>
+
+        <input type="date" class="form-control" formControlName="date" />
+
+         @if(campoInvalido(`date`)){
+          <div class="text-danger small">
+            Data é Obrigatória
+          </div>
+        }
+      </div>
+
+      <!-- Categoria -->
+      <div class="col-md-6">
+        <label class="form-label">
+          <i class="bi bi-tags me-1"></i>
+          Categoria
+        </label>
+
+        <select class="form-select" formControlName="categoryId">
+          
+
+          @for (cat of categoryList; track cat.id) {
+            <option [value]="cat.id">
+              {{ cat.name }}
+            </option>
+          }
+        </select>
+
+        @if(campoInvalido(`categoryId`)){
+          <div class="text-danger small">
+            Categoria é Obrigatória
+          </div>
+        }
+      </div>
+
+      <!-- Descrição -->
+      <div class="col-12">
+        <label class="form-label">
+          <i class="bi bi-card-text me-1"></i>
+          Descrição
+        </label>
+
+        <textarea
+          class="form-control"
+          rows="3"
+          placeholder="Descrição (opcional)"
+          formControlName="description"
+        >
+        </textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="card-footer bg-light d-flex justify-content-end gap-2">
+    <button type="button" class="btn btn-outline-secondary" (click)="onClose()">
+      <i class="bi bi-x-circle me-1"></i>
+      Cancelar
+    </button>
+
+    <button type="button" class="btn btn-primary" (click)="onSave()">
+      <i class="bi bi-check-circle me-1"></i>
+      Salvar
+    </button>
+  </div>
+</div>

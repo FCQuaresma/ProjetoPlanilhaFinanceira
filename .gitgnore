@@ -1,0 +1,41 @@
+# Angular / Node
+node_modules/
+dist/
+.angular/
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.rsuser
+.vs/
+
+# Visual Studio / VS Code
+.vscode/
+.idea/
+
+# Configurações sensíveis
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+.env
+.env.*
+
+# Banco / backups
+*.db
+*.bak
+*.mdf
+*.ldf
+
+# Logs
+logs/
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
